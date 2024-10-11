@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
      *
      * @return array
      */
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validData = parent::validated();
         Validator::make(request()->all(), [

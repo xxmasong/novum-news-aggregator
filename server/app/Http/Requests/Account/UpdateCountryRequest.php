@@ -25,7 +25,7 @@ class UpdateCountryRequest extends FormRequest
      *
      * @return array
      */
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validated = parent::validated();
         $userCountry = UserCountry::where(User::FOREIGN_ID, $this->user()->id);

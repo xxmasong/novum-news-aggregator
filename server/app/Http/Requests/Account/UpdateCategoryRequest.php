@@ -25,7 +25,7 @@ class UpdateCategoryRequest extends FormRequest
      *
      * @return array
      */
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validated = parent::validated();
         if (!empty($validated))
