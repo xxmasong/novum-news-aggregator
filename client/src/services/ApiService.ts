@@ -11,12 +11,12 @@ const apiClient = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'https://novum.xxmasong.site',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Accept',
-    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Credentials': false,
     'X-Requested-With': 'XMLHttpRequest',
   },
-  withCredentials: true,
+  // withCredentials: false,
 });
 
 const requestHeader = (headers?: any) => {
@@ -28,7 +28,7 @@ const requestHeader = (headers?: any) => {
       return {"Authorization" : `Bearer ${access_token}`};
     }
   }
-  
+
   return headers;
 }
 

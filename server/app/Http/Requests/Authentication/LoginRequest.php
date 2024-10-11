@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validData = parent::validated();
         $user = User::where(User::EMAIL, $validData[User::EMAIL])->first();

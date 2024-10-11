@@ -35,6 +35,8 @@ class NewsController extends Controller
         if (!empty($validData[NewsProps::APIKEY])) {
             $newsData = new NewsData($validData[NewsProps::APIKEY]);
             unset($validData[NewsProps::APIKEY]);
+            if (empty($validData[NewsProps::COUNTRY]))
+                $validData[NewsProps::COUNTRY] = 'us';
             $response = collect($newsData->get_latest_news($validData))->toArray();
             if ($response[NewsProps::STATUS] === NewsProps::SUCCESS) {
                 return $this->success(NewsProps::ARTICLES, [
@@ -46,6 +48,8 @@ class NewsController extends Controller
             for ($count = 1; $count <= 5; $count++) {
                 $configApiKey = config('common.newsdata_api_key_' . $count);
                 $newsData = new NewsData($configApiKey);
+                if (empty($validData[NewsProps::COUNTRY]))
+                    $validData[NewsProps::COUNTRY] = 'us';
                 $response = collect($newsData->get_latest_news($validData))->toArray();
                 if ($response[NewsProps::STATUS] === NewsProps::SUCCESS) {
                     return $this->success(NewsProps::ARTICLES, [

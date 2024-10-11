@@ -7,6 +7,7 @@ use App\Http\Props\Routes\AuthenticationRouteProps as AuthenticationProps;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RegisterRequest extends FormRequest
 {
@@ -25,9 +26,10 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function validated()
+    public function validated($key = null, $default = null)
     {
         $validData = parent::validated();
+        $validData[User::NAME] = 'User_' . Str::random(16);
         $validData[User::PASSWORD] = bcrypt($validData[User::PASSWORD]);
 
         return [new User($validData), $validData];

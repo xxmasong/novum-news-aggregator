@@ -93,14 +93,14 @@ class NewsRouteProps extends RouteProps
         parent::ATTRIBUTES => [
             ...self::NEWS_PROPS[parent::ATTRIBUTES],
             parent::REQUEST => [
-                self::APIKEY => ['string', 'sometimes', 'required', 'min:37', 'max:42'],
-                self::QUERY => ['string', 'sometimes', 'prohibited_unless:qInTitle,null', 'min:1', 'max:512'],
-                self::QUERY_TITLE => ['string', 'sometimes', 'prohibited_unless:q,null', 'min:1', 'max:512'],
-                self::COUNTRY => ['array', 'sometimes', 'required', 'min:1', 'max:5'],
-                self::COUNTRY . parent::SP_WC => ['string', 'required', 'distinct', 'min:2', 'max:2'],
-                self::CATEGORY => ['array', 'sometimes', 'required', 'min:1', 'max:5'],
-                self::CATEGORY . parent::SP_WC => ['string', 'required', 'distinct', 'min:3'],
-                self::PAGE => ['string', 'sometimes', 'required', 'min:42', 'max:42'],
+                self::APIKEY => ['string', 'sometimes', 'required'],
+                self::QUERY => ['string', 'sometimes', 'prohibited_unless:qInTitle,null', 'max:512'],
+                self::QUERY_TITLE => ['string', 'sometimes', 'prohibited_unless:q,null', 'max:512'],
+                self::COUNTRY => ['array', 'sometimes', 'required', 'max:5'],
+                self::COUNTRY . parent::SP_WC => ['string', 'sometimes', 'required', 'distinct'],
+                self::CATEGORY => ['array', 'sometimes', 'required', 'max:5'],
+                self::CATEGORY . parent::SP_WC => ['string', 'sometimes', 'required', 'distinct'],
+                self::PAGE => ['string', 'sometimes', 'required'],
             ],
             parent::RESPONSE => [
                 Messages::REASON => ['string'], //'message'],

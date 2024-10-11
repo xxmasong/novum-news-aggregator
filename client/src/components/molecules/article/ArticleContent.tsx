@@ -10,16 +10,18 @@ function ArticleContent () {
   const [author, setAuthor] = useState('');
   const [content, textToHTML] = useHTML();
 
+  console.log(article)
+
   useEffect(() => {
     setAuthor(article?.creator ? article?.creator.join(', ') : '');
-    textToHTML(article?.content || '');
+    textToHTML(`${article?.description}... ${article?.content}` || 'See link for more details');
   }, [article, textToHTML]);
 
   return (
     <ArticleContentBlock>
-      <Content 
-        dangerouslySetInnerHTML={{ __html: `${content}` }} 
-      />    
+      <Content
+        dangerouslySetInnerHTML={{ __html: `${content}` }}
+      />
       <SubInfo>
         <div className="information">
           {author && (
